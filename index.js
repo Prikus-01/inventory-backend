@@ -1,7 +1,8 @@
 import express from "express";
 import helmet from "helmet";
 import cors from "cors";
-import 'dotenv/config'
+import 'dotenv/config';
+import {connectDB} from "./src/utils/database.js"
 
 const app = express();
 const PORT = process.env.PORT || 6213;
@@ -36,6 +37,13 @@ app.get("/health", (req, res) => {
 app.use((req, res) => {
     res.status(404).json({ error: "Route not found" });
 });
+
+try {
+    await connectDB();
+} catch (error) {
+    console.log(error);
+    process.exit(1);
+}
 
 app.listen(PORT, () => {
     console.log(`server started!! listening on port ${PORT}`);

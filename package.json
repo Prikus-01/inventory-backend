@@ -19,8 +19,9 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "start": "node index.js",
+    "setup:db" : "node scripts/setup-databases.js"
   },
   "dependencies": {
     "bcryptjs": "^3.0.2",
