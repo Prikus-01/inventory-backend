@@ -4,6 +4,7 @@ import cors from "cors";
 import 'dotenv/config';
 import {connectDB} from "./src/utils/database.js"
 import godownsRoutes from "./src/routes/godowns.js"
+import productsRoutes from "./src/routes/products.js"
 
 const app = express();
 const PORT = process.env.PORT || 6213;
@@ -26,6 +27,7 @@ app.get("/health", (req, res) => {
 });
 
 app.use('/api/v1/godowns', godownsRoutes)
+app.use('/api/v1/products', productsRoutes)
 
 // Global error handler
 app.use((err, req, res, next) => {
