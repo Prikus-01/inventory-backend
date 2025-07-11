@@ -3,6 +3,7 @@ import helmet from "helmet";
 import cors from "cors";
 import 'dotenv/config';
 import {connectDB} from "./src/utils/database.js"
+import godownsRoutes from "./src/routes/godowns.js"
 
 const app = express();
 const PORT = process.env.PORT || 6213;
@@ -24,14 +25,16 @@ app.get("/health", (req, res) => {
     res.status(200).json({ status: "OK", timestamp: new Date().toISOString() });
 });
 
+app.use('/api/v1/godowns', godownsRoutes)
+
 // Global error handler
-// app.use((err, req, res, next) => {
-//     logger.critical("Unhandled error:", err);
-//     res.status(500).json({
-//         error: "Internal server error",
-//         ...(process.env.NODE_ENV === "development" && { details: err.message }),
-//     });
-// });
+app.use((err, req, res, next) => {
+    logger.critical("Unhandled error:", err);
+    res.status(500).json({
+        error: "Internal server error",
+        ...(process.env.NODE_ENV === "development" && { details: err.message }),
+    });
+});
 
 // 404 handler
 app.use((req, res) => {

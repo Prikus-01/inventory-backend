@@ -6,7 +6,7 @@ let pool;
  * Initialize database connection pool
  * @returns {Pool} PostgreSQL connection pool
  */
-const initializePool = () => {
+export const initializePool = () => {
 	if (!pool) {
 		pool = new Pool({
 			host: process.env.DB_HOST,
@@ -32,7 +32,7 @@ const initializePool = () => {
 /**
  * Connect to the database and test connection
  */
-const connectDB = async () => {
+export const connectDB = async () => {
 	try {
 		const dbPool = initializePool();
 		const client = await dbPool.connect();
@@ -50,7 +50,7 @@ const connectDB = async () => {
  * @param {Array} params - Query parameters
  * @returns {Promise<Object>} Query result
  */
-const query = async (text, params = []) => {
+export const query = async (text, params = []) => {
 	const dbPool = initializePool();
 	const start = Date.now();
 
@@ -73,15 +73,9 @@ const query = async (text, params = []) => {
  * Get a database client for transactions
  * @returns {Promise<Object>} Database client
  */
-const getClient = async () => {
+export const getClient = async () => {
 	const dbPool = initializePool();
 	return await dbPool.connect();
 };
 
-
-export {
-	connectDB,
-	query,
-	getClient,
-};
 
