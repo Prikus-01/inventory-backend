@@ -1,0 +1,383 @@
+{
+	"info": {
+		"_postman_id": "bf086940-2b5f-4d6f-894c-66a93773a422",
+		"name": "Godown-inventory",
+		"description": "# 🚀 Get started here\n\nThis template guides you through CRUD operations (GET, POST, PUT, DELETE), variables, and tests.\n\n## 🔖 **How to use this template**\n\n#### **Step 1: Send requests**\n\nRESTful APIs allow you to perform CRUD operations using the POST, GET, PUT, and DELETE HTTP methods.\n\nThis collection contains each of these [request](https://learning.postman.com/docs/sending-requests/requests/) types. Open each request and click \"Send\" to see what happens.\n\n#### **Step 2: View responses**\n\nObserve the response tab for status code (200 OK), response time, and size.\n\n#### **Step 3: Send new Body data**\n\nUpdate or add new data in \"Body\" in the POST request. Typically, Body data is also used in PUT request.\n\n```\n{\n    \"name\": \"Add your name in the body\"\n}\n\n ```\n\n#### **Step 4: Update the variable**\n\nVariables enable you to store and reuse values in Postman. We have created a [variable](https://learning.postman.com/docs/sending-requests/variables/) called `base_url` with the sample request [https://postman-api-learner.glitch.me](https://postman-api-learner.glitch.me). Replace it with your API endpoint to customize this collection.\n\n#### **Step 5: Add tests in the \"Scripts\" tab**\n\nAdding tests to your requests can help you confirm that your API is working as expected. You can write test scripts in JavaScript and view the output in the \"Test Results\" tab.\n\n<img src=\"https://content.pstmn.io/fa30ea0a-373d-4545-a668-e7b283cca343/aW1hZ2UucG5n\" alt=\"\" height=\"1530\" width=\"2162\">\n\n## 💪 Pro tips\n\n- Use folders to group related requests and organize the collection.\n    \n- Add more [scripts](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/) to verify if the API works as expected and execute workflows.\n    \n\n## 💡Related templates\n\n[API testing basics](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9a37a28-055b-49cd-8c7e-97494a21eb54&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[API documentation](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9c28f47-1253-44af-a2f3-20dce4da1f18&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[Authorization methods](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=31a9a6ed-4cdf-4ced-984c-d12c9aec1c27&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33670571"
+	},
+	"item": [
+		{
+			"name": "godowns",
+			"item": [
+				{
+					"name": "getGodowns",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:6213/api/v1/godowns",
+							"host": [
+								"localhost"
+							],
+							"port": "6213",
+							"path": [
+								"api",
+								"v1",
+								"godowns"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateGodowns",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"godown_name\" : \"naya pura colony\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:6213/api/v1/godowns/12",
+							"host": [
+								"localhost"
+							],
+							"port": "6213",
+							"path": [
+								"api",
+								"v1",
+								"godowns",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteGodowns",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:6213/api/v1/godowns/11",
+							"host": [
+								"localhost"
+							],
+							"port": "6213",
+							"path": [
+								"api",
+								"v1",
+								"godowns",
+								"11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createGodowns",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"godown_name\" : \"naya pura\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:6213/api/v1/godowns",
+							"host": [
+								"localhost"
+							],
+							"port": "6213",
+							"path": [
+								"api",
+								"v1",
+								"godowns"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "products",
+			"item": [
+				{
+					"name": "getProducts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:6213/api/v1/products",
+							"host": [
+								"localhost"
+							],
+							"port": "6213",
+							"path": [
+								"api",
+								"v1",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateproducts",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"product_name\" : \"kasu-b\",\r\n    \"packing\" : \"100ml\",\r\n    \"units_in_case\": 50\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:6213/api/v1/products/4",
+							"host": [
+								"localhost"
+							],
+							"port": "6213",
+							"path": [
+								"api",
+								"v1",
+								"products",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteProducts",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:6213/api/v1/products/2",
+							"host": [
+								"localhost"
+							],
+							"port": "6213",
+							"path": [
+								"api",
+								"v1",
+								"products",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createProducts",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"product_name\" : \"kasu-b\",\r\n    \"packing\" : \"250ml\",\r\n    \"units_in_case\": 40\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:6213/api/v1/Products",
+							"host": [
+								"localhost"
+							],
+							"port": "6213",
+							"path": [
+								"api",
+								"v1",
+								"Products"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "transactions",
+			"item": [
+				{
+					"name": "gettransactions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:6213/api/v1/transactions",
+							"host": [
+								"localhost"
+							],
+							"port": "6213",
+							"path": [
+								"api",
+								"v1",
+								"transactions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updatetransactions",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"transaction_type\" : \"inward\",\r\n    \"product_id\" : 4,\r\n    \"godown_id\": 12,\r\n    \"quantity\" : 100,\r\n    \"reference_number\" : 1001\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:6213/api/v1/transactions/1",
+							"host": [
+								"localhost"
+							],
+							"port": "6213",
+							"path": [
+								"api",
+								"v1",
+								"transactions",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deletetransactions",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:6213/api/v1/transactions/10",
+							"host": [
+								"localhost"
+							],
+							"port": "6213",
+							"path": [
+								"api",
+								"v1",
+								"transactions",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createtransactions",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"transaction_type\" : \"outward\",\r\n    \"product_id\" : 1,\r\n    \"godown_id\": 9,\r\n    \"quantity\" : 30,\r\n    \"reference_number\" : 1001\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:6213/api/v1/transactions",
+							"host": [
+								"localhost"
+							],
+							"port": "6213",
+							"path": [
+								"api",
+								"v1",
+								"transactions"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "inventorys",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"transaction_type\" : \"inward\",\r\n    \"product_id\" : \"\",\r\n    \"godown_id\": ,\r\n    \"quantity\" : \"\",\r\n    \"reference_number\" : \"\",\r\n}"
+				},
+				"url": {
+					"raw": "localhost:6213/api/v1/inventorys",
+					"host": [
+						"localhost"
+					],
+					"port": "6213",
+					"path": [
+						"api",
+						"v1",
+						"inventorys"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "1"
+		},
+		{
+			"key": "base_url",
+			"value": "https://postman-rest-api-learner.glitch.me/"
+		}
+	]
+}
