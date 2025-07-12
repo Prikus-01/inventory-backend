@@ -28,3 +28,11 @@ export const gettransaction = async () => {
 
     return result.rows;
 }
+
+export const gettransactionbyid = async (id) => {
+    const result = await query(
+        "SELECT * FROM transactions WHERE transactions_id=$1",[id]
+    )
+
+    return result.rows[0];
+}

@@ -1,8 +1,26 @@
-import { createtransaction, deletetransaction, updatetransaction, gettransaction } from "../models/transactions.js"
+import { createtransaction, deletetransaction, updatetransaction, gettransaction, gettransactionbyid } from "../models/transactions.js"
+import {  createinventory, getinventorybyid, updateinventory } from "../models/inventorys.js"
 
 export const createTransaction = async (req,res) => {
     try {
         const { transaction_type, product_id, godown_id, quantity, reference_number } = req.body;
+
+        //check row exist or not
+        const product = await getinventorybyid(product_id,godown_id);
+
+        //row does not exist
+        if(product.length === 0){
+            const creproduct = await createinventory(product_id,godown_id,0);
+        }
+        
+        //row exist
+        if(transaction_type === 'inward'){
+            const prod = await getinventorybyid(product_id,godown_id);
+            const updatedinventory = await updateinventory(product_id, godown_id, prod[0].quantity+quantity);
+        }else{
+            const prod = await getinventorybyid(product_id,godown_id);
+            const updatedinventory = await updateinventory(product_id, godown_id, prod[0].quantity-quantity);
+        }
         
         const result = await createtransaction(transaction_type, product_id, godown_id, quantity, reference_number );
         
@@ -20,6 +38,17 @@ export const createTransaction = async (req,res) => {
 export const deleteTransaction = async (req,res) => {
     try {
         const { id } = req.params;
+
+        const trans = await gettransactionbyid(id);
+        console.log(trans)
+
+        if(trans.transaction_type === 'inward'){
+            const prod = await getinventorybyid(trans.product_id,trans.godown_id);
+            const updatedinventory = await updateinventory(trans.product_id, trans.godown_id, prod[0].quantity-trans.quantity);
+        }else{
+            const prod = await getinventorybyid(trans.product_id,trans.godown_id);
+            const updatedinventory = await updateinventory(trans.product_id, trans.godown_id, prod[0].quantity+trans.quantity);
+        }
 
         const result = await deletetransaction(id);
 

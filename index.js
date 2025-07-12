@@ -6,6 +6,7 @@ import {connectDB} from "./src/utils/database.js"
 import godownsRoutes from "./src/routes/godowns.js"
 import productsRoutes from "./src/routes/products.js"
 import transactionRoutes from "./src/routes/transactions.js"
+import { query } from "./src/utils/database.js";
 
 const app = express();
 const PORT = process.env.PORT || 6213;
@@ -30,6 +31,13 @@ app.get("/health", (req, res) => {
 app.use('/api/v1/godowns', godownsRoutes)
 app.use('/api/v1/products', productsRoutes)
 app.use('/api/v1/transactions', transactionRoutes)
+
+app.get('/api/v1/inventorys' , async (req,res) => {
+    const result = await query(
+        "SELECT * FROM inventorys ORDER BY inventory_id ASC"
+    )
+    res.status(200).json({status : 200 , data : result.rows})
+})
 
 // Global error handler
 app.use((err, req, res, next) => {
