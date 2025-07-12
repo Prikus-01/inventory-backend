@@ -3,7 +3,7 @@
 
 CREATE TYPE trans_type AS ENUM ('inward', 'outward');
 
--- Users table
+-- Products table
 CREATE TABLE IF NOT EXISTS Products (
     product_id SERIAL PRIMARY KEY,
     product_name VARCHAR(30) UNIQUE NOT NULL,
@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS Products (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Posts table
+-- Godowns table
 CREATE TABLE IF NOT EXISTS Godowns (
     godown_id SERIAL PRIMARY KEY,
     godown_name TEXT NOT NULL,
@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS Godowns (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- like table
+-- Inventorys table
 CREATE TABLE IF NOT EXISTS Inventorys (
     inventory_id SERIAL PRIMARY KEY,
     product_id INTEGER NOT NULL REFERENCES Products(product_id) ON DELETE CASCADE,
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS Inventorys (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- comment table
+-- Transactions table
 CREATE TABLE IF NOT EXISTS Transactions (
     transactions_id SERIAL PRIMARY KEY,
     transaction_type trans_type,
