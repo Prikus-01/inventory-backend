@@ -6,7 +6,7 @@ CREATE TYPE trans_type AS ENUM ('inward', 'outward');
 -- Products table
 CREATE TABLE IF NOT EXISTS Products (
     product_id SERIAL PRIMARY KEY,
-    product_name VARCHAR(30) UNIQUE NOT NULL,
+    product_name VARCHAR(30) NOT NULL,
     packing VARCHAR(255) NOT NULL,
     units_in_case INTEGER NOT NULL, 
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
