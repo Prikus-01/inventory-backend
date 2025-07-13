@@ -39,6 +39,13 @@ app.get('/api/v1/inventorys' , async (req,res) => {
     res.status(200).json({status : 200 , data : result.rows})
 })
 
+app.get('/api/v1/displayinventorys' , async (req,res) => {
+    const result = await query(
+        "Select inventory_id, inventorys.product_id, godown_name, quantity, product_name, packing, units_in_case, inventorys.updated_at from (inventorys inner join products on inventorys.product_id = products.product_id) inner join godowns on inventorys.godown_id = godowns.godown_id ORDER BY product_name ASC"
+    )
+    res.status(200).json({status : 200 , data : result.rows})
+})
+
 // Global error handler
 app.use((err, req, res, next) => {
     logger.critical("Unhandled error:", err);
