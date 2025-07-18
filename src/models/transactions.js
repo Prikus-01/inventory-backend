@@ -29,6 +29,14 @@ export const gettransaction = async () => {
     return result.rows;
 }
 
+export const displaytransaction = async () => {
+    const result = await query(
+        "Select transactions_id, transaction_type, transactions.product_id, transactions.godown_id, quantity, reference_number, transactions_date, product_name, packing, units_in_case, godown_name from (transactions inner join products on transactions.product_id = products.product_id) inner join godowns on transactions.godown_id = godowns.godown_id ORDER BY product_name ASC"
+    )
+
+    return result.rows;
+}
+
 export const gettransactionbyid = async (id) => {
     const result = await query(
         "SELECT * FROM transactions WHERE transactions_id=$1",[id]

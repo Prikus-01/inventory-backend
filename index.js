@@ -41,14 +41,21 @@ app.get('/api/v1/inventorys' , async (req,res) => {
 
 app.get('/api/v1/displayinventorys' , async (req,res) => {
     const result = await query(
-        "Select inventory_id, inventorys.product_id, godown_name, quantity, product_name, packing, units_in_case, inventorys.updated_at from (inventorys inner join products on inventorys.product_id = products.product_id) inner join godowns on inventorys.godown_id = godowns.godown_id ORDER BY product_name ASC"
+        "Select inventory_id, inventorys.product_id, godown_name, quantity, product_name, packing, units_in_case, quantity::float/units_in_case::float as cases, inventorys.updated_at from (inventorys inner join products on inventorys.product_id = products.product_id) inner join godowns on inventorys.godown_id = godowns.godown_id ORDER BY product_name ASC"
     )
     res.status(200).json({status : 200 , data : result.rows})
 })
 
+app.get('/api/v1/inventorybyid/:product_id/:godown_id', async (req,res) => {
+    const result = await query(
+        "SELECT * FROM inventorys WHERE product_id=$1 AND godown_id=$2",[req.params.product_id,req.params.godown_id]
+    )
+    res.status(200).json({status : 200 , data : result.rowCount === 0 ? {quantity : 0} : result.rows[0]});
+})
+
 // Global error handler
 app.use((err, req, res, next) => {
-    logger.critical("Unhandled error:", err);
+    console.log("Unhandled error:", err);
     res.status(500).json({
         error: "Internal server error",
         ...(process.env.NODE_ENV === "development" && { details: err.message }),
